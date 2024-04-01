@@ -1,6 +1,6 @@
 \documentclass{dcbl/challenge}
 
-\setdoctitle{Der Titel meines Dokuments}
+\setdoctitle{The Naive Processor}
 \setdocauthor{Stephan Bökelmann}
 \setdocemail{sboekelmann@ep1.rub.de}
 \setdocinstitute{AG Physik der Hadronen und Kerne}
@@ -8,20 +8,48 @@
 
 \begin{document}
 
-Jedes Challenge-Blatt beginnt mit einer kurzen Einleitung, die einen Kontext für den jeweiligen Zettel setzt. 
+For this worksheet we want to assume a naive implementation of a computer-processor. 
+Obviously, modern processors are too complex, to understand the inner workings immediately.
+Thus, we will try to solve the problem in a naive way.
+A processor is a collection of instructions, that can be used to map $n*m$-sets of inputs to $i*k$-sets of outputs, using $p$ different projections. 
+Our naive processor will be a collection of four different projections (add, sub, mul, modulo), each designed to map $2$ inputs, each of $4$-bits width to $1$ output of $4$-bits width. 
 
-\section*{Aufgaben}
+\section*{Exercises}
 \begin{aufgabe}
-    Löse die Gleichung $x^2 - 5x + 6 = 0$.
+    Since our processor should only have two inputs and one output, we need a mechanic to decide which projection should be used. In the naive case, this is done by using a multiplexer - abbr. MUX. Read the article about multiplexers on \url{https://www.electronics-tutorials.ws/combination/comb_2.html} and draw a sketch, how a such a MUX can be used, to select a projection. How many bits are needed, to configure the MUX?
 \end{aufgabe}
 
-\begin{aufgabe}[Für Fortgeschrittene]
-    Beweise den Satz des Pythagoras.
+\begin{aufgabe}
+    Take a sheet of square lineature paper, and draw a table with four columns and $16$ rows.
+    Each of the cells should now be filled with ones and zeros. 
+    Index each line with numbers from $0$ to $15$, but in binary notation. 
+    You have now created a register-set. 
+    Processors use these registers to store values, that will be used in calculations. 
+    Describe, how a set of three multiplexers can now be used, to select the input and the output-register for the processor.
+    How many bits are needed, to configure each MUX?
 \end{aufgabe}
 
-\section*{Anmerkungen}
+\begin{aufgabe}
+    With these two basic blocks - the register- and the operation-MUX - we can now describe an operation of the processor by just using a $4$-tuple of the multiplexers configurations. 
+    A program for our naive processor can now be described as a sequence of multiplexer configurations. 
+    Using your previously drawn conclusions, write down a program in binary that implements the following instructions:
+    \begin{enumerate}
+        \item Add registers $0$ and $1$ and write to register $2$.
+        \item Subtract register $0$ and $1$ and write to register $3$.
+        \item Project the modulo of register $2$ and $3$ and write to register $12$.
+        \item Multiply registers $0$ amd $1$ and write to register $9$.
+    \end{enumerate}
+\end{aufgabe}
+
+\begin{aufgabe}
+    A type of processor, which is a little bit more complex, but still understandable with what you have now learned, is the so called MIPS. 
+    Use the following reference and explain, how a MIPS is different from our naive processor: \url{https://www.cs.kzoo.edu/cs230/Resources/MIPS/MachineXL/InstructionFormats.html}
+\end{aufgabe}
+
+\section*{Annotations}
 \begin{enumerate}
-    \item Link zu einem YouTube-Video: \url{https://www.youtube.com}
+    \item Slide-Deck on MIPS Instructions by the University of Utah: \url{https://users.cs.utah.edu/~rajeev/cs3810/slides/3810-17-04.pdf}
+    \item Overview of Multiplexers: \url{https://www.javatpoint.com/multiplexer-digital-electronics}
 \end{enumerate}
 
 \end{document}
